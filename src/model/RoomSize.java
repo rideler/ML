@@ -55,5 +55,10 @@ public class RoomSize extends Classify {
 		header.setClassIndex(header.numAttributes() - 1);
 
 	}
+	
+	@Override
+	String getName() {
+		return "roomSize";
+	}
 
 }

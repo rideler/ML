@@ -4,7 +4,7 @@
 package model;
 
 import java.util.ArrayList;
-import weka.core.Attribute;
+import java.util.HashMap;
 
 /**
  * class that hold list of categories for the reviews
@@ -12,37 +12,34 @@ import weka.core.Attribute;
  */
 public class Attributes {
 
-	private ArrayList<Attribute> atrs;
-	private ArrayList<String> vals;
+	private ArrayList<Classify> atrs;
 	/**
 	 * CTOR that build with preset atrs
 	 */
 	public Attributes() {
-		setVals();
 		setAtr();
 	}
-	public ArrayList<Attribute> getAtr() {
+	public ArrayList<Classify> getAtr() {
 		return atrs;
 	}
 	private void setAtr() {
-		this.atrs = new ArrayList<Attribute>();
-		this.atrs.add(new Attribute("bathroom", this.vals));
-		this.atrs.add(new Attribute("quiet", this.vals));
-		this.atrs.add(new Attribute("roomACC", this.vals));
-		this.atrs.add(new Attribute("roomSize", this.vals));
-		this.atrs.add(new Attribute("service", this.vals));
-		this.atrs.add(new Attribute("clean", this.vals));
-		this.atrs.add(new Attribute("room", this.vals));
-		this.atrs.add(new Attribute("food", this.vals));
+		this.atrs = new ArrayList<Classify>();
+		this.atrs.add(new Bathroom());
+		this.atrs.add(new Quiet());
+		this.atrs.add(new RoomACC());
+		this.atrs.add(new RoomSize());
+		this.atrs.add(new Service());
+		this.atrs.add(new Clean());
+		this.atrs.add(new Room());
+		this.atrs.add(new Food());
+	}
 
-	}
-	public ArrayList<String> getVals() {
-		return vals;
-	}
-	private void setVals() {
-		this.vals = new ArrayList<String>();
-		this.vals.add("1");
-		this.vals.add("-1");
+	public ReviewedTag classify(Review rvw){
+		HashMap <String, String> tags = new HashMap <String, String>();
+		for(Classify cl: atrs){
+			tags.put(cl.getName(), cl.classifyAttribute(rvw.getText()));
+		}
+		return(new ReviewedTag(rvw.getId(), tags));
 	}
 
 }

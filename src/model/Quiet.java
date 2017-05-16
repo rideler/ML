@@ -56,4 +56,9 @@ public class Quiet extends Classify {
 
 	}
 
+	@Override
+	String getName() {
+		return "quiet";
+	}
+	
 }

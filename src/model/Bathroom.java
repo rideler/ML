@@ -58,4 +58,9 @@ public class Bathroom extends Classify {
 
 	}
 
+	@Override
+	String getName() {
+		return "bathroom";
+	}
+
 }

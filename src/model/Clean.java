@@ -53,6 +53,10 @@ public class Clean extends Classify {
 		}
 		 // setting class attribute
 		header.setClassIndex(header.numAttributes() - 1);
-
+	}
+	
+	@Override
+	String getName() {
+		return "clean";
 	}
 }

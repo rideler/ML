@@ -36,11 +36,10 @@ public class Run {
 				System.out.println("************new review:************");
 				System.out.println(review.getId());
 				System.out.println(review.getText());
-				System.out.println(bth.synomContains(review.getText()));
+				System.out.println("********");
+				System.out.println(bth.classifyAttribute(review.getText()));
+				System.out.println("********");
 			}
-			System.out.println("********");
-			System.out.println(bth.classifyAttribute());
-			System.out.println("********");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

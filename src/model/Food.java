@@ -56,4 +56,9 @@ public class Food extends Classify {
 
 	}
 
+	@Override
+	String getName() {
+		return "food";
+	}
+	
 }

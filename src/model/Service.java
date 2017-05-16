@@ -55,4 +55,9 @@ public class Service extends Classify {
 		header.setClassIndex(header.numAttributes() - 1);
 
 	}
+	
+	@Override
+	String getName() {
+		return "service";
+	}
 }

@@ -56,4 +56,9 @@ public class RoomACC extends Classify {
 
 	}
 
+	@Override
+	String getName() {
+		return "roomACC";
+	}
+	
 }

@@ -34,9 +34,10 @@ public abstract class Classify {
 	abstract void setSynonyms();
 	abstract void setModel();
 	abstract void setInstance();
+	abstract String getName();
 	
 	public String classifyAttribute(String text){
-		if (!synomContains(text)){
+		if (synomContains(text)){
 			Instances tmpInstances = new Instances(header);
 			SparseInstance instance = new SparseInstance(tmpInstances.numAttributes());
 			instance.setDataset(tmpInstances);
