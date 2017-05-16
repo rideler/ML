@@ -1,0 +1,6 @@
+@RELATION RoomSize
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRroomSize {-1,1}
+
+@DATA

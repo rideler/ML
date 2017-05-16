@@ -1,0 +1,6 @@
+@RELATION Bathroom
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRbathroom {-1,1}
+
+@DATA

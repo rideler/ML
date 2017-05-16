@@ -1,0 +1,6 @@
+@RELATION Clean
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRclean {-1,1}
+
+@DATA

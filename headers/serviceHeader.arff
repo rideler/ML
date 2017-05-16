@@ -1,0 +1,6 @@
+@RELATION Service
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRservice {-1,1}
+
+@DATA

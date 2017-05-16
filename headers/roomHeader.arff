@@ -1,0 +1,6 @@
+@RELATION Room
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRroom {-1,1}
+
+@DATA

@@ -1,0 +1,6 @@
+@RELATION Quiet
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRquiet {-1,1}
+
+@DATA

@@ -1,0 +1,6 @@
+@RELATION Food
+
+@ATTRIBUTE Text string
+@ATTRIBUTE ATRfood {-1,1}
+
+@DATA
