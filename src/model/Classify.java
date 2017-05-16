@@ -8,7 +8,7 @@ import weka.filters.Filter;
 
 public abstract class Classify {
 	
-	protected  ArrayList<String> synonyms;
+	protected ArrayList<String> synonyms;
 	protected Classifier model;
 	protected Filter filter;
 	protected Instances header;
@@ -22,7 +22,12 @@ public abstract class Classify {
 	}
 	
 	private void setFilter(){
-		Object o = weka.core.SerializationHelper.read("./filters/filter");
+		Object o = null;
+		try {
+			o = weka.core.SerializationHelper.read("./filters/filter");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		filter = (Filter)o;
 	}
 
@@ -30,7 +35,7 @@ public abstract class Classify {
 	abstract void setModel();
 	abstract void setInstance();
 	
-	public double classifyAttribute(){
+	public String classifyAttribute(){
 		Instances tmpInstances = new Instances(header);
 		SparseInstance instance = new SparseInstance(tmpInstances.numAttributes());
 		instance.setDataset(tmpInstances);
@@ -38,9 +43,23 @@ public abstract class Classify {
 		instance.setClassValue(0);
 		tmpInstances.add(instance);
 		
-		filter.setInputFormat(tmpInstances);
-		Instances filteredInstances = Filter.useFilter(tmpInstances, filter);
-		double result = model.classifyInstance(filteredInstances.get(0));
+		try {
+			filter.setInputFormat(tmpInstances);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Instances filteredInstances = null;
+		try {
+			filteredInstances = Filter.useFilter(tmpInstances, filter);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		double result = 0;
+		try {
+			result = model.classifyInstance(filteredInstances.get(0));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return header.classAttribute().value((int)result);
 	}
 	
