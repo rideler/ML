@@ -4,6 +4,8 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.Bathroom;
+import model.Classify;
 import model.JsonParser;
 import model.Review;
 import model.ReviewedTag;
@@ -22,16 +24,23 @@ public class Run {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
 		try {
-			JSONObject obj = new JSONObject("{\"reviews\":[{\"id\":\"198575\",\"text\":\"bkaahhdsjjjdjd\"},{\"id\":\"637548684\",\"text\":\"bkaahhdsjjjdjd\"}]}");
+			JSONObject obj = new JSONObject("{\"reviews\":[{\"id\":\"198575\",\"text\":\"room clean nice bla shower hbla good\"},{\"id\":\"637548684\",\"text\":\"bkaahhbathdsjjjdjd\"}]}");
 			ArrayList<Review> list = new ArrayList<Review>();
 			list = JsonParser.Json2Reviews(obj);
 			System.out.println("print of reviews:");
+			Classify bth = new Bathroom();
 			for (Review review : list) {
 				System.out.println("************new review:************");
 				System.out.println(review.getId());
 				System.out.println(review.getText());
+				System.out.println(bth.synomContains(review.getText()));
 			}
+			System.out.println("********");
+			System.out.println(bth.classifyAttribute());
+			System.out.println("********");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

@@ -25,7 +25,7 @@ public class Service extends Classify {
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("../../mlModels/service_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/service_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Service extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("../..//headers/serviceHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/serviceHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -27,7 +27,7 @@ public class Bathroom extends Classify {
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("../../mlModels/bathroom_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/bathroom_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class Bathroom extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("../../headers/bathroomHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/bathroomHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

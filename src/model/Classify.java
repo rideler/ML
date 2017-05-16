@@ -24,7 +24,7 @@ public abstract class Classify {
 	private void setFilter(){
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("./filters/filter");
+			o = weka.core.SerializationHelper.read("filters/string_2_vector");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,32 +35,48 @@ public abstract class Classify {
 	abstract void setModel();
 	abstract void setInstance();
 	
-	public String classifyAttribute(){
-		Instances tmpInstances = new Instances(header);
-		SparseInstance instance = new SparseInstance(tmpInstances.numAttributes());
-		instance.setDataset(tmpInstances);
-		instance.setValue(0, 1);
-		instance.setClassValue(0);
-		tmpInstances.add(instance);
-		
-		try {
-			filter.setInputFormat(tmpInstances);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public String classifyAttribute(String text){
+		if (!synomContains(text)){
+			Instances tmpInstances = new Instances(header);
+			SparseInstance instance = new SparseInstance(tmpInstances.numAttributes());
+			instance.setDataset(tmpInstances);
+			instance.setValue(0, 0);
+			instance.setClassValue(0);
+			tmpInstances.add(instance);
+			
+			try {
+				filter.setInputFormat(tmpInstances);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			Instances filteredInstances = null;
+			try {
+				filteredInstances = Filter.useFilter(tmpInstances, filter);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			double result = 2;
+			try {
+				result = model.classifyInstance(filteredInstances.get(0));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (result == 2){
+				return "error";
+			}
+			return header.classAttribute().value((int)result);
 		}
-		Instances filteredInstances = null;
-		try {
-			filteredInstances = Filter.useFilter(tmpInstances, filter);
-		} catch (Exception e) {
-			e.printStackTrace();
+		else
+			return "0";
+	}
+	
+	private boolean synomContains(String text){
+		for (String str: synonyms){
+			if (text.contains(str)){
+				return true;
+			}
 		}
-		double result = 0;
-		try {
-			result = model.classifyInstance(filteredInstances.get(0));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return header.classAttribute().value((int)result);
+		return false;
 	}
 	
 }

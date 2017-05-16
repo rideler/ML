@@ -25,7 +25,7 @@ public class Quiet extends Classify {
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("../../mlModels/quiet_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/quiet_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Quiet extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("../../headers/quietHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/quietHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

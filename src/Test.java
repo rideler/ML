@@ -11,16 +11,15 @@ public class Test {
 	public Test() throws Exception {
 		// TODO Auto-generated constructor stub
 	
-		Object o = weka.core.SerializationHelper.read("C:\\Users\\Shay\\Desktop\\model.model");
+		Object o = weka.core.SerializationHelper.read("mlModels/model.model");
 		Classifier model = (Classifier)o;
 		System.out.println(model);
 	
-		Object o1 = weka.core.SerializationHelper.read("C:\\Users\\Shay\\Desktop\\filter");
+		Object o1 = weka.core.SerializationHelper.read("filters/filter");
 		Filter f = (Filter)o1;
 		System.out.println(f);
 		
-		BufferedReader reader = new BufferedReader(
-                new FileReader("C:\\Users\\Shay\\Desktop\\header.arff"));
+		BufferedReader reader = new BufferedReader(new FileReader("headers/header.arff"));
 		Instances header = new Instances(reader);
 		reader.close();
 		 // setting class attribute
