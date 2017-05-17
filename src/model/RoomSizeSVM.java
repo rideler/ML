@@ -10,22 +10,22 @@ import java.util.Arrays;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
-public class Service extends Classify {
+public class RoomSizeSVM extends ClassifyStr2vec {
 
-	public Service() {
+	public RoomSizeSVM() {
 		super();
 	}
 
 	@Override
 	void setSynonyms() {
-		this.synonyms = new ArrayList<String>(Arrays.asList("phone","help","service","reception","desk","answer","rude","clerk","bill","credit","customer","doorman","manager","employee","friend","inform","direction","check"));
+		this.synonyms = new ArrayList<String>(Arrays.asList("space","size","spread","small","big","huge","tiny","little","narrow","roomy","stuffy","spacious","cramped","enormous"));
 	}
 
 	@Override
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("mlModels/service_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/roomSize_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Service extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("headers/serviceHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/roomSizeHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -58,6 +58,7 @@ public class Service extends Classify {
 	
 	@Override
 	String getName() {
-		return "service";
+		return "roomSize";
 	}
+
 }

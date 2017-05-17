@@ -10,22 +10,22 @@ import java.util.Arrays;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
-public class RoomACC extends Classify {
+public class RoomSVM extends ClassifyStr2vec {
 
-	public RoomACC() {
+	public RoomSVM() {
 		super();
 	}
 
 	@Override
 	void setSynonyms() {
-		this.synonyms = new ArrayList<String>(Arrays.asList("vault","remote","air","ac","tv","bed","comfort","work","broke","safe","internet","wifi","wi fi","wi-fi","closet","table","tea","coffee","mirror","fan","kettel","iron","hang","clock","sheet","blanket","slipper","pillow"));
+		this.synonyms = new ArrayList<String>(Arrays.asList("room","clean","suite","accommodation","apartment","cabine","resident"));
 	}
 
 	@Override
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("mlModels/roomACC_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/room_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class RoomACC extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("headers/roomACCHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/roomHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -55,10 +55,10 @@ public class RoomACC extends Classify {
 		header.setClassIndex(header.numAttributes() - 1);
 
 	}
-
+	
 	@Override
 	String getName() {
-		return "roomACC";
+		return "room";
 	}
-	
+
 }

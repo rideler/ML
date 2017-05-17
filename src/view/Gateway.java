@@ -3,17 +3,74 @@
  */
 package view;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Observable;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+import controller.MLcontroller;
+
 /**
  * @author Shay
  *
  */
-public class Gateway {
+public class Gateway extends Observable {
 
+	private MLcontroller controller;
+	private ArrayList<String> commands;
 	/**
 	 * 
 	 */
 	public Gateway() {
-		// TODO Auto-generated constructor stub
+		this.setCommands(new ArrayList<String>());
+		//setting the print for the menu
+		//commands.add("exit");
+	}
+	public MLcontroller getController() {
+		return controller;
+	}
+	public void setController(MLcontroller controller) {
+		this.controller = controller;
+	}
+	public ArrayList<String> getCommands() {
+		return commands;
+	}
+	public void setCommands(ArrayList<String> commands) {
+		this.commands = commands;
+	}
+	public void sender(Object[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void error(String string) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-HH:mm");
+		Date date = new Date();
+		String nowDate = dateFormat.format(date);
+		Logger logger = Logger.getLogger("log");
+        logger.setUseParentHandlers(false);
+	    FileHandler fh;  
+
+	    try {  
+
+	        // This block configure the logger with handler and formatter  
+	        fh = new FileHandler("ML.log" , true);  
+	        logger.addHandler(fh);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fh.setFormatter(formatter);  
+
+	        // the following statement is used to log any messages  
+	        logger.warning(nowDate + " : " + string); 
+	        fh.close();
+	    } catch (SecurityException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        e.printStackTrace();  
+	    }  		
 	}
 
 }

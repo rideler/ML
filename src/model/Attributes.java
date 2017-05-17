@@ -12,31 +12,31 @@ import java.util.HashMap;
  */
 public class Attributes {
 
-	private ArrayList<Classify> atrs;
+	private ArrayList<ClassifyStr2vec> atrs;
 	/**
 	 * CTOR that build with preset atrs
 	 */
 	public Attributes() {
 		setAtr();
 	}
-	public ArrayList<Classify> getAtr() {
+	public ArrayList<ClassifyStr2vec> getAtr() {
 		return atrs;
 	}
 	private void setAtr() {
-		this.atrs = new ArrayList<Classify>();
-		this.atrs.add(new Bathroom());
-		this.atrs.add(new Quiet());
-		this.atrs.add(new RoomACC());
-		this.atrs.add(new RoomSize());
-		this.atrs.add(new Service());
-		this.atrs.add(new Clean());
-		this.atrs.add(new Room());
-		this.atrs.add(new Food());
+		this.atrs = new ArrayList<ClassifyStr2vec>();
+		this.atrs.add(new BathroomSVM());
+		this.atrs.add(new QuietSVM());
+		this.atrs.add(new RoomACCSVM());
+		this.atrs.add(new RoomSizeSVM());
+		this.atrs.add(new ServiceSVM());
+		this.atrs.add(new CleanSVM());
+		this.atrs.add(new RoomSVM());
+		this.atrs.add(new FoodSVM());
 	}
 
 	public ReviewedTag classify(Review rvw){
 		HashMap <String, String> tags = new HashMap <String, String>();
-		for(Classify cl: atrs){
+		for(ClassifyStr2vec cl: atrs){
 			tags.put(cl.getName(), cl.classifyAttribute(rvw.getText()));
 		}
 		return(new ReviewedTag(rvw.getId(), tags));

@@ -10,22 +10,22 @@ import java.util.Arrays;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
-public class Room extends Classify {
+public class QuietSVM extends ClassifyStr2vec {
 
-	public Room() {
+	public QuietSVM() {
 		super();
 	}
 
 	@Override
 	void setSynonyms() {
-		this.synonyms = new ArrayList<String>(Arrays.asList("room","clean","suite","accommodation","apartment","cabine","resident"));
+		this.synonyms = new ArrayList<String>(Arrays.asList("quite","noise","noisy","loud","sound","music","talk","street","train","cars","window","racket","commotion","shout","scream","yell","silent","mute"));
 	}
 
 	@Override
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("mlModels/room_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/quiet_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Room extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("headers/roomHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/quietHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -55,10 +55,10 @@ public class Room extends Classify {
 		header.setClassIndex(header.numAttributes() - 1);
 
 	}
-	
+
 	@Override
 	String getName() {
-		return "room";
+		return "quiet";
 	}
-
+	
 }

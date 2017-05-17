@@ -10,22 +10,22 @@ import java.util.Arrays;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
-public class Quiet extends Classify {
+public class ServiceSVM extends ClassifyStr2vec {
 
-	public Quiet() {
+	public ServiceSVM() {
 		super();
 	}
 
 	@Override
 	void setSynonyms() {
-		this.synonyms = new ArrayList<String>(Arrays.asList("quite","noise","noisy","loud","sound","music","talk","street","train","cars","window","racket","commotion","shout","scream","yell","silent","mute"));
+		this.synonyms = new ArrayList<String>(Arrays.asList("phone","help","service","reception","desk","answer","rude","clerk","bill","credit","customer","doorman","manager","employee","friend","inform","direction","check"));
 	}
 
 	@Override
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("mlModels/quiet_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/service_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Quiet extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("headers/quietHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/serviceHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -55,10 +55,9 @@ public class Quiet extends Classify {
 		header.setClassIndex(header.numAttributes() - 1);
 
 	}
-
+	
 	@Override
 	String getName() {
-		return "quiet";
+		return "service";
 	}
-	
 }

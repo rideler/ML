@@ -10,22 +10,22 @@ import java.util.Arrays;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
-public class Food extends Classify {
+public class RoomACCSVM extends ClassifyStr2vec {
 
-	public Food() {
+	public RoomACCSVM() {
 		super();
 	}
 
 	@Override
 	void setSynonyms() {
-		this.synonyms = new ArrayList<String>(Arrays.asList("food","restaurant","bar","dinner","breakfast","brunch","lunch","snack","appetizer","salt","sweet","waitress","waiter","cook","chef","hostess","piccolo","dish","dining","eat","feast","Buffet","dine","egg"));
+		this.synonyms = new ArrayList<String>(Arrays.asList("vault","remote","air","ac","tv","bed","comfort","work","broke","safe","internet","wifi","wi fi","wi-fi","closet","table","tea","coffee","mirror","fan","kettel","iron","hang","clock","sheet","blanket","slipper","pillow"));
 	}
 
 	@Override
 	void setModel() {
 		Object o = null;
 		try {
-			o = weka.core.SerializationHelper.read("mlModels/food_model.model");
+			o = weka.core.SerializationHelper.read("mlModels/roomACC_model.model");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Food extends Classify {
 	void setInstance() {
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("headers/foodHeader.arff"));
+			reader = new BufferedReader(new FileReader("headers/roomACCHeader.arff"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +58,7 @@ public class Food extends Classify {
 
 	@Override
 	String getName() {
-		return "food";
+		return "roomACC";
 	}
 	
 }
