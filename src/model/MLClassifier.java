@@ -1,46 +1,31 @@
 package model;
 
 import java.util.ArrayList;
-import weka.classifiers.Classifier;
+
 import weka.core.Instances;
 import weka.core.SparseInstance;
 import weka.filters.Filter;
+/**
+ * MLClassifier is class that extends AbsClassifier and implement its abstract method.
+ */
+public class MLClassifier extends AbsClassifier {
 
-public abstract class ClassifyStr2vec implements Classify {
-	
-	protected ArrayList<String> synonyms;
-	protected Classifier model;
-	protected Filter filter;
-	protected Instances header;
-	protected Instances s2wHdr;
-	
-
-	public ClassifyStr2vec() {
-		setSynonyms();
-		setModel();
-		setFilter();
-		setInstance();
-		setS2wHdr();
-	}
-	
-	private void setFilter(){
-		Object o = null;
-		try {
-			o = weka.core.SerializationHelper.read("filters/string_2_vector");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		filter = (Filter)o;
+	/**
+	 * ctor for MLClassifier sends the parameters to the super class.
+	 * @param attrName the name of the attribute. as string
+	 * @param synonyms list of synonyms for the attribute
+	 * @param modelPath path to the attribute model file as string
+	 * @param filterPath path to the filter file as string
+	 * @param headerPath path to the attribute header file as string
+	 * @param filterdHdr path to the attribute header after filter file as string
+	 */
+	public MLClassifier(String attrName, ArrayList<String> synonyms, String modelPath, String filterPath,
+			String headerPath, String modelHdrPath) {
+		super(attrName, synonyms, modelPath, filterPath, headerPath, modelHdrPath);
 	}
 
-	abstract void setSynonyms();
-	abstract void setModel();
-	abstract void setInstance();
-	abstract String getName();
-	abstract void setS2wHdr();
-	
 	@Override
-	public String classifyAttribute(String text){
+	public String classifyAttribute(String text) {
 		if (synomContains(text)){
 			Instances tmpInstances = new Instances(header);
 			SparseInstance instance = new SparseInstance(tmpInstances.numAttributes());
@@ -74,14 +59,5 @@ public abstract class ClassifyStr2vec implements Classify {
 		else
 			return "0";
 	}
-	
-	private boolean synomContains(String text){
-		for (String str: synonyms){
-			if (text.toLowerCase().contains(str)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
+
 }

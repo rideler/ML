@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.io.IOException;
@@ -13,40 +10,43 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import controller.MLcontroller;
-
 /**
- * @author Shay
- *
+ * Gateway class extends Observable
  */
 public class Gateway extends Observable {
 
-	private MLcontroller controller;
 	private ArrayList<String> commands;
+	
 	/**
-	 * 
+	 * ctor
 	 */
 	public Gateway() {
 		this.setCommands(new ArrayList<String>());
 		//setting the print for the menu
 		//commands.add("exit");
 	}
-	public MLcontroller getController() {
-		return controller;
-	}
-	public void setController(MLcontroller controller) {
-		this.controller = controller;
-	}
+	
+	//getters and setters
 	public ArrayList<String> getCommands() {
 		return commands;
 	}
 	public void setCommands(ArrayList<String> commands) {
 		this.commands = commands;
 	}
+	
+	/**
+	 * 
+	 * @param args
+	 */
 	public void sender(Object[] args) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * print the erroe to log.
+	 * @param string the error
+	 */
 	public void error(String string) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-HH:mm");
 		Date date = new Date();

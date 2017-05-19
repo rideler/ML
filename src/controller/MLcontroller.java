@@ -30,6 +30,8 @@ public class MLcontroller implements Observer {
 	public MLcontroller(MLmodel model,  Gateway view) {
 		setModel(model);
 		setView(view);
+		model.addObserver(this);
+		view.addObserver(this);
 	}
 	/**
 	 * get the model the presenter work with

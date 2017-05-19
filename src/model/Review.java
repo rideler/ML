@@ -1,4 +1,5 @@
 package model;
+
 /**
  * Review object with structure of id: string and text: string
  * each review will hold unique id
@@ -16,7 +17,7 @@ public class Review {
 		setId(id);
 		setText(text);
 	}
-//getter and setters
+	//getter and setters
 	public String getId() {
 		return id;
 	}

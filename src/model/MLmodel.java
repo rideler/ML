@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.ArrayList;
@@ -12,8 +9,7 @@ import org.json.JSONObject;
 import controller.MLcontroller;
 
 /**
- * @author Shay
- *
+ * MLmodel is class that extend Observable
  */
 public class MLmodel  extends Observable{
 
@@ -22,13 +18,13 @@ public class MLmodel  extends Observable{
 	
 
 	/**
-	 * 
+	 * ctor
 	 */
 	public MLmodel() {
 		setAtrributes(new Attributes());
 	}
 
-	
+	//getters and setters
 	public MLcontroller getController() {
 		return controller;
 	}
@@ -45,7 +41,10 @@ public class MLmodel  extends Observable{
 		this.atrributes = atrributes;
 	}
 
-
+	/**
+	 * get not tagged reviews in format of JSON classify them and send back tagged reviews in JSON format.
+	 * @param args the not tagged reviews in format of JSON.
+	 */
 	public void classifyReview(Object[] args) {
 		Object[] ans = new Object[2];
 		

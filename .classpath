@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Shay/workspace/ML/json-simple-1.1.1.jar/json-simple-1.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Shay/workspace/ML/java-json.jar/java-json.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Shay/workspace/ML/remoteExperimentServer.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Shay/workspace/ML/weka.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Shay/workspace/ML/weka-src.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/java-json.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/json-simple-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/remoteExperimentServer.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/weka-src.jar"/>
+	<classpathentry exported="true" kind="lib" path="jars/weka.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

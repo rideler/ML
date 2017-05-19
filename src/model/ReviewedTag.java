@@ -13,13 +13,16 @@ import java.util.HashMap;
 public class ReviewedTag {
 	private String id;
 	private HashMap <String, String> tags;
+	
 	/**
-	 * 
+	 * ctor 
 	 */
 	public ReviewedTag(String id, HashMap <String, String> tags) {
 		setId(id);
 		setTags(tags);
 	}
+	
+	//getters and setters
 	public String getId() {
 		return id;
 	}

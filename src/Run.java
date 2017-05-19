@@ -1,13 +1,15 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.BathroomSVM;
-import model.ClassifyStr2vec;
+import model.AbsClassifier;
+import model.IClassifier;
 import model.JsonParser;
+import model.MLClassifier;
 import model.Review;
 import model.ReviewedTag;
 import view.Gateway;
@@ -45,7 +47,7 @@ public class Run {
 			System.out.println("********");
 			list = JsonParser.Json2Reviews(jsonArray);
 			System.out.println("print of reviews:");
-			ClassifyStr2vec bth = new BathroomSVM();
+			IClassifier bth = new MLClassifier("bathroom", new ArrayList<String>(Arrays.asList("bath","shower","toilet","lavatory","sink","stool","bidet","flood","water","towels","urinal","boiler","soap","stream","pressure","robe","leak","flow","drip")), "mlModels/bathroom_model.model", "filters/string_2_vector", "headers/bathroomHeader.arff", "headers/S2Wbathroom.arff");
 			for (Review review : list) {
 				System.out.println("************new review:************");
 				System.out.println(review.getId());
